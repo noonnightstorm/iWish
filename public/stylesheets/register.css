@@ -1,0 +1,41 @@
+.base-info{
+	float: left;
+	width: 330px;
+}
+.register-avater{
+	display: block;
+	width: 250px;
+	font-size: 25px;
+	color: #EC6941;
+}
+.avatar-box{
+	width: 384px;
+	height: 475px;
+	margin-left: 340px;
+}
+.avatar-title{
+	margin-left: 32px;
+	font-size: 25px;
+	color: #EC6941;
+}
+.avatar-row{
+	width: 384px;
+	height: 150px;
+	float: none;
+}
+.avatar-item{
+	float: left;
+}
+.avatar-name{
+	text-align: center;
+	color: #EC6941;
+}
+.avatar-select{
+	width: 258px;
+	margin: 22px 0 0 40px;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 1px 1px 3px #292929;
+	-moz-box-shadow: 1px 1px 3px #292929;
+	box-shadow: 1px 1px 3px #292929;
+}

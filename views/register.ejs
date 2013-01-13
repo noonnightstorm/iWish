@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>账户注册</title>
+	<link rel="stylesheet" href="/stylesheets/layout.css">
+	<link rel="stylesheet" href="/stylesheets/index.css">
+	<link rel="stylesheet" href="/stylesheets/register.css">
+</head>
+<body>
+	<div class="container">
+		<header class="header">
+			<a href="" class="logo"></a>
+			<a href="" class="logo-tips">for HCI</a>
+		</header>
+		<div class="body">
+			<p class="title">注册</p>
+			<form action="/insertUser" method="post" class="login-form">
+				<div class="base-info">
+					<input type="text" class="login-input login-account"placeholder="邮箱" name="mail">
+					<input type="password" class="login-input login-password" placeholder="密码" name="password">
+					<input type="password" class="login-input login-password" placeholder="密码确认" name="password2">
+					<input type="text" class="login-input login-nickname" placeholder="昵称" name="nickname">
+					<div class="avatar-select">
+						<select name="avatar" id="" class="register-avater">
+							<option value="default">头像</option>
+							<option value="chensy">Chensy</option>
+							<option value="eric">Eric</option>
+							<option value="haozi">HaoZi</option>
+							<option value="jation">Jation</option>
+							<option value="michael">Michael</option>
+							<option value="shunai">Shunai</option>
+							<option value="steven">Steven</option>
+							<option value="storm">Storm</option>
+						</select>
+					</div>
+					<input type="submit" value="注册" class="btn login-btn">
+				</div>
+				<div class="avatar-box">
+					<h1 class="avatar-title"><strong>头像选择：</strong></h1>
+					<div class="avatar-row">
+						<div class="avatar-item">
+							<img src="../images/Avatar-Chensy.png" alt="#" class="avatar">
+							<p class="avatar-name">Chensy</p>
+						</div>
+						<div class="avatar-item">
+							<img src="../images/Avatar-Eric.png" alt="#" class="avatar">
+							<p class="avatar-name">Eric</p>
+						</div>
+						<div class="avatar-item">
+							<img src="../images/Avatar-HaoZi.png" alt="#" class="avatar">
+							<p class="avatar-name">HaoZi</p>
+						</div>
+					</div>
+					<div class="avatar-row">
+						<div class="avatar-item">
+							<img src="../images/Avatar-Jation.png" alt="#" class="avatar">
+							<p class="avatar-name">Jation</p>
+						</div>
+						<div class="avatar-item">
+							<img src="../images/Avatar-Michael.png" alt="#" class="avatar">
+							<p class="avatar-name">Michael</p>
+						</div>
+						<div class="avatar-item">
+							<img src="../images/Avatar-Shunai.png" alt="#" class="avatar">
+							<p class="avatar-name">Shunai</p>
+						</div>
+					</div>
+					<div class="avatar-row">
+						<div class="avatar-item">
+							<img src="../images/Avatar-Steven.png" alt="#" class="avatar">
+							<p class="avatar-name">Steven</p>
+						</div>
+						<div class="avatar-item">
+							<img src="../images/Avatar-Storm.png" alt="#" class="avatar">
+							<p class="avatar-name">Storm</p>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<footer>
+			<div class="footer-box">
+				<section class="menu">
+					<a href="">愿望树</a>
+					&nbsp&nbsp|&nbsp&nbsp
+					<a href="">创建项目</a>
+				</section>
+			</div>
+			<div class="footer-author">
+				<span>技术指导:梁广彬 黄浩松 黄佳生</span>
+				&nbsp&nbsp&nbsp&nbsp
+				<span>版权所有:<a href="">SCAU@HCI</a></span>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>
