@@ -42,10 +42,11 @@ a{
 }
 .body{
 	width: 860px;
+	margin-bottom: 20px;
 }
 .footer-box{
 	position: relative;
-	width: 795px;
+	width: 100%;
 	height: auto!important;
 	min-height: 150px;
 	height: 150px;
@@ -53,7 +54,7 @@ a{
 	color: #FFF;
 }
 .footer-box .menu{
-	width: 175px;
+	width: 195px;
 	height: 30px;
 	margin: auto;
 	padding-top: 50px;
@@ -66,7 +67,7 @@ a{
 	text-decoration: underline;
 }
 .footer-author{
-	width: 780px;
+	width: 100%;
 	text-align: center;
 	color: #EC6941;
 }

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="/stylesheets/layout.css">
+	<link rel="stylesheet" href="/stylesheets/wish_list.css">
+	<script type="text/javascript" src="/javascripts/wish_tree.js"></script>
+	<script type="text/javascript" src="/javascripts/jquery-1.7.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<header class="header project-header">
+			<a href="" class="logo project-logo"></a>
+			<a href="" class="logo-tips">for HCI</a>
+			<a href="" class="complete-wish">愿望成真</a>
+			<button class="suggest" id="suggest" value="<%= project._id %>"></button>
+		</header>
+		<div class="body project-body">
+			<h1 class="project-title">项目名称:<%= project.name %></h1>
+			<p class="project-content">
+				<%= project.content %>
+			</p>
+			<div class="comment-box">
+				<section class="status-going">
+					<% comments.forEach(function(comment){ %>
+						<% if(comment.status == "going")%>
+						<% include wish_tree_part %>
+  					<% }) %>
+					<section class="comment-item">
+						<div class="comment-title">
+							<img src="/images/status-ongoing.png" alt="" class="comment-status">
+							<span class="comment-info">Sorm @ 2013-1-15</span>
+						</div>
+						<div class="comment-avatar">
+							<img src="/images/Avatar-Storm.png" alt="avatar">
+						</div>
+						<article class="comment-content-box">
+							<div class="comment-operate">
+								<a href="">更多</a>
+								&nbsp
+								<a href="">完成</a>
+								&nbsp
+								<a href="">删除</a>
+							</div>
+							<span class="comment-content">中国共产党\</span>
+						</article>
+						<div class="comment-vote">
+							<span>28</span>
+							<a href="">+1</a>
+						</div>
+					</section>
+
+				</section>
+				<section class="status-iwish">
+					<% comments.forEach(function(comment){ %>
+						<% if(comment.status == "iwish")%>
+						<% include wish_tree_part %>
+  					<% }) %>
+
+					<section class="comment-item">
+						<div class="comment-title">
+							<img src="/images/status-iwish.png" alt="" class="comment-status">
+							<span class="comment-info">Sorm @ 2013-1-15</span>
+						</div>
+						<div class="comment-avatar">
+							<img src="/images/Avatar-Storm.png" alt="avatar">
+						</div>
+						<article class="comment-content-box">
+							<div class="comment-operate">
+								<a href="">更多</a>
+								&nbsp
+								<a href="">获准</a>
+								&nbsp
+								<a href="">删除</a>
+							</div>
+							<span class="comment-content">中国共产党中央政治局常务委员会\</span>
+						</article>
+						<div class="comment-vote">
+							<span>28</span>
+							<a href="">+1</a>
+						</div>
+					</section>
+
+				</section>
+			</div>	
+		</div>
+		<footer>
+			<div class="footer-box">
+				<section class="menu">
+					<a href="">愿望树</a>
+					&nbsp&nbsp|&nbsp&nbsp
+					<a href="">创建项目</a>
+				</section>
+			</div>
+			<div class="footer-author">
+				<span>技术指导:梁广彬 黄浩松 黄佳生</span>
+				&nbsp&nbsp&nbsp&nbsp
+				<span>版权所有:<a href="">SCAU@HCI</a></span>
+			</div>
+		</footer>
+	</div>
+	<div class="all-screen" id="all-screen">
+	</div>
+	<form class="wish-box" id="wish-box">
+		<h1 class="wish-title">我的愿望：</h1>
+		<textarea name="" id="wish-content" class="wish-content" placeholder="愿望一定会成真的" maxlength="250"></textarea>
+		<div class="wish-btn-row">
+			<button class="wish-btn" id="post-wish-btn">提交</button>
+			<button class="wish-btn" type="reset">重写</button>
+		</div>
+	</form>
+</body>
+</html>

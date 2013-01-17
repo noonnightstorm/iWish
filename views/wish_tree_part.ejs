@@ -1,0 +1,27 @@
+<section class="comment-item">
+	<div class="comment-title">
+		<img src="/images/status-<%= comment.status %>.png" alt="" class="comment-status">
+		<span class="comment-info">
+			<%= comment.user.name %> @ <%= comment.date %>
+		</span>
+	</div>
+	<div class="comment-avatar">
+		<img src="/images/Avatar-<%= comment.user.avatar %>.png" alt="avatar">
+	</div>
+	<article class="comment-content-box">
+		<div class="comment-operate">
+			<a href="">更多</a>
+			&nbsp
+			<a href="">完成</a>
+			&nbsp
+			<a href="">删除</a>
+		</div>
+		<span class="comment-content">
+			<%= comment.content %>
+		</span>
+	</article>
+	<div class="comment-vote">
+		<span><%= comment.score %></span>
+		<a href="">+1</a>
+	</div>
+</section>

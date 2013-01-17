@@ -7,9 +7,7 @@ var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
-  , path = require('path')
-  , db = require('./db')
-  , tool = require("./tool");
+  , path = require('path');
 
 var app = express();
 
@@ -21,6 +19,8 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser('your secret here'));
+  app.use(express.session());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
 });
@@ -33,7 +33,13 @@ app.get('/', routes.index);
 app.get("/register",routes.register);
 app.get("/login",routes.login);
 app.post("/insertUser",routes.insertUser);
-app.get('/users', user.list);
+/*app.get('/users', user.list);*/
+app.get("/pro_list",routes.projectList);
+app.get("/Mypro_list",routes.myProjectList);
+app.get("/create_pro",routes.createProject);
+app.post("/insert_pro",routes.insertsProject);
+app.get("/wish_tree/:project_id",routes.wishTree);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

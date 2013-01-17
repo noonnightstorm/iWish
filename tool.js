@@ -1,7 +1,6 @@
 exports.loginResult = function (req,res,info){
 	if(!info){
 		console.log("login Success");
-		/*res.redirect( '/register' );*/
 	}
 	else{
 		console.log("login Fail");
