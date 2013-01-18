@@ -22,6 +22,7 @@ var Comment = new Schema({
 	} ,
 	project_id : String ,
 	status : String,
+	score: Number,
 	date : String 
 });
 
@@ -68,12 +69,16 @@ exports.insertUser = function(req,res){
 		var user = new Persons();
 		user.mail = req.body.mail;
 		user.password = req.body.password;
-		user.name = req.body.name;
+		user.name = req.body.nickname;
 		user.avatar = req.body.avatar;
 		user.save();
-		Persons.findOne({_id:user._id},function(err,obj){
+		/*Persons.findOne({_id:user._id},function(err,obj){
 			console.log(obj);
-		});
+		});*/
+		req.session.user_id = user._id;
+		req.session.user_name = user.name;
+		req.session.user_avatar = user.avatar;
+		res.redirect("/pro_list");
 	}
 }
 exports.projectList = function(req,res){
@@ -121,19 +126,23 @@ exports.insertComment = function(req,res){
 	/*console.log(req.params.project_id);
 	console.log(req.body.content);*/
 	Persons.findOne({_id:req.session.user_id},function(err,user){
+		var date = new Date();
 		var comment = new Comments();
 		comment.content = req.body.content;
 		comment.project_id = req.params.project_id;
-		comment.status = "iwish";
-		console.log(user.name);
 		comment.user.name = user.name;
 		comment.user.avatar = user.avatar;
+		comment.status = "iwish";
+		comment.score = 0;
+		comment.date = date.getFullYear()+"-"+(parseInt(date.getMonth())+1)+"-"+date.getDate();
 		comment.save();
 		Comments.findOne({_id:comment._id},function(err,obj){
 			console.log(obj);
 		});
 	});
 	Comments.remove({},function(err,obj){});
+	Persons.remove({},function(err,obj){});
+	Projects.remove({},function(err,obj){});
 }
 function init(req){
 	req.session.user_id = null;

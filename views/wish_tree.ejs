@@ -24,8 +24,9 @@
 			<div class="comment-box">
 				<section class="status-going">
 					<% comments.forEach(function(comment){ %>
-						<% if(comment.status == "going")%>
+						<% if(comment.status == "ongoing"){%>
 						<% include wish_tree_part %>
+						<% } %>
   					<% }) %>
 					<section class="comment-item">
 						<div class="comment-title">
@@ -54,8 +55,9 @@
 				</section>
 				<section class="status-iwish">
 					<% comments.forEach(function(comment){ %>
-						<% if(comment.status == "iwish")%>
+						<% if(comment.status == "iwish"){ %>
 						<% include wish_tree_part %>
+						<% } %>
   					<% }) %>
 
 					<section class="comment-item">
