@@ -39,7 +39,7 @@ app.get("/Mypro_list",routes.myProjectList);
 app.get("/create_pro",routes.createProject);
 app.post("/insert_pro",routes.insertsProject);
 app.get("/wish_tree/:project_id",routes.wishTree);
-
+app.post("/add_comment/:project_id",routes.insertComment);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

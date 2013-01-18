@@ -2,7 +2,7 @@
 <html lang="en-US">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>愿望树</title>
 	<link rel="stylesheet" href="/stylesheets/layout.css">
 	<link rel="stylesheet" href="/stylesheets/wish_list.css">
 	<script type="text/javascript" src="/javascripts/wish_tree.js"></script>
@@ -106,8 +106,8 @@
 		<h1 class="wish-title">我的愿望：</h1>
 		<textarea name="" id="wish-content" class="wish-content" placeholder="愿望一定会成真的" maxlength="250"></textarea>
 		<div class="wish-btn-row">
-			<button class="wish-btn" id="post-wish-btn">提交</button>
-			<button class="wish-btn" type="reset">重写</button>
+			<button class="wish-btn" type="submit" id="post-wish-btn" value="<%= project._id %>" name="submit">提交</button>
+			<button class="wish-btn" type="reset" id="wish-box-reset-btn">重写</button>
 		</div>
 	</form>
 </body>

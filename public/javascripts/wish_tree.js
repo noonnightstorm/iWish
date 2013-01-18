@@ -2,18 +2,17 @@ window.onload = function(){
 	var suggest = document.getElementById("suggest");
 	var screen = document.getElementById("all-screen");
 	screen.onclick = function(){
-		PushWish.clearScreen();
+		WriteWish.clearScreen();
 	}
 	suggest.onclick = function(){
-		PushWish.btnClick();
+		WriteWish.btnClick();
 	}
-
-	$("#post-wish-btn").click(function(){
-		postWish(this.value);
-	});	
+	$("#wish-box").submit(function(e){
+		PostWish.postWish(e);
+	});
 }
 
-var PushWish = {
+var WriteWish = {
 	showScreen : function(){
 		var screen = document.getElementById("all-screen");
 		screen.style.display = "block";
@@ -40,12 +39,51 @@ var PushWish = {
 	}
 };
 
-function postWish(projectId){
+var PostWish = {
+	postWish : function(event){
+		this.sendWish(event);
+		this.clearForm();
+		this.getWishList();
+	},
+	sendWish : function(event){
+		event.preventDefault();
+		form = event.target;
+		var params = {
+			content : $("#wish-content").val()
+		};
+		$.ajax({
+			url: '/add_comment/'+form.submit.value,
+			type: 'post', 
+			data: params,
+			datatype: 'json',
+			success: function(){
+				alert("success!");
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+				console.log(a + 'complete#' + b);
+			}
+		});
+		return false;
+	},
+	clearForm : function(){
+		$("#wish-box-reset-btn").trigger("click");
+	},
+	getWishList : function(){
+
+	}
+};
+
+/*function postWish(event){
+	event.preventDefault();
+	form = event.target;
 	var params = {
 		content : $("#wish-content").val()
 	};
 	$.ajax({
-		url: '/add_comment/'+projectId,
+		url: '/add_comment/'+form.submit.value,
 		type: 'post', 
 		data: params,
 		datatype: 'json',
@@ -59,4 +97,5 @@ function postWish(projectId){
 			console.log(a + 'complete#' + b);
 		}
 	});
-}
+	return false;
+}*/

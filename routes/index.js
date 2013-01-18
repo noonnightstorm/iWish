@@ -16,9 +16,13 @@ var Project = new Schema({
 });
 var Comment = new Schema({
 	content : String ,
-	user_id : String ,
+	user : {
+		name : String,
+		avatar : String
+	} ,
 	project_id : String ,
-	status : String 
+	status : String,
+	date : String 
 });
 
 var Persons = mongoose.model( 'Person', Person );
@@ -100,17 +104,36 @@ exports.insertsProject = function(req,res){
 	project.content = req.body.content;
 	project.password = req.body.password;
 	project.save();
-	redirect("/wish_tree/"+project._id);
+	res.redirect("/wish_tree/"+project._id);
 }
 exports.wishTree = function(req,res){
 	Projects.findOne({_id:req.params.project_id},function(err,project){
 		Comments.find({project_id:req.params.project_id},function(err,comments){
+			console.log(comments);
 			res.render("wish_tree",{
 				project : project,
 				comments : comments
 			});
 		});
 	});
+}
+exports.insertComment = function(req,res){
+	/*console.log(req.params.project_id);
+	console.log(req.body.content);*/
+	Persons.findOne({_id:req.session.user_id},function(err,user){
+		var comment = new Comments();
+		comment.content = req.body.content;
+		comment.project_id = req.params.project_id;
+		comment.status = "iwish";
+		console.log(user.name);
+		comment.user.name = user.name;
+		comment.user.avatar = user.avatar;
+		comment.save();
+		Comments.findOne({_id:comment._id},function(err,obj){
+			console.log(obj);
+		});
+	});
+	Comments.remove({},function(err,obj){});
 }
 function init(req){
 	req.session.user_id = null;
