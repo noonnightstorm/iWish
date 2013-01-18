@@ -109,20 +109,17 @@ var PostWish = {
 	},
 	createWishList : function (type,node,comment){
 		$(node).css("display","block");
+		$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
+		$(node).find(".comment-content").html(comment.content);
+		$(node).find(".comment-vote .comment-vote-score").html(comment.score);
 		if(type == "iwish"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
-			$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-			$(node).find(".comment-content").html(comment.content);
-			$(node).find(".comment-vote .comment-vote-score").html(comment.score);
 			$("#status-iwish").append(node);
 		}
 		else if(type == "ongoing"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
-			$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-			$(node).find(".comment-content").html(comment.content);
-			$(node).find(".comment-vote .comment-vote-score").html(comment.score);
 			$("#status-going").append(node);
 		}
 	}
