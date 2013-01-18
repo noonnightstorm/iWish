@@ -76,11 +76,8 @@ var PostWish = {
 		$("#wish-box-reset-btn").trigger("click");
 	},
 	updateWishList : function(event){
-		var nodes = $("#status-going section").clone(false);
-		var node = null;
-		if(nodes.length > 0){
-			node = nodes[0];
-		}
+		var nodes = $(".comment-box .comment-item-demo").clone(false);
+		var node = nodes[0];
 		$("#status-going").children().remove();
 		$("#status-iwish").children().remove();
 		var project_id = event.target.submit.value;
@@ -111,26 +108,22 @@ var PostWish = {
 		});
 	},
 	createWishList : function (type,node,comment){
-		if(node){
-			if(type == "iwish"){
-				$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
-				$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
-				$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-				$(node).find(".comment-content").html(comment.content);
-				$(node).find(".comment-vote .comment-vote-score").html(comment.score);
-				$("#status-iwish").append(node);
-			}
-			else if(type == "ongoing"){
-				$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
-				$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
-				$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-				$(node).find(".comment-content").html(comment.content);
-				$(node).find(".comment-vote .comment-vote-score").html(comment.score);
-				$("#status-going").append(node);
-			}
+		$(node).css("display","block");
+		if(type == "iwish"){
+			$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
+			$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
+			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+			$(node).find(".comment-content").html(comment.content);
+			$(node).find(".comment-vote .comment-vote-score").html(comment.score);
+			$("#status-iwish").append(node);
 		}
-		else{
-			
+		else if(type == "ongoing"){
+			$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
+			$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
+			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+			$(node).find(".comment-content").html(comment.content);
+			$(node).find(".comment-vote .comment-vote-score").html(comment.score);
+			$("#status-going").append(node);
 		}
 	}
 };
