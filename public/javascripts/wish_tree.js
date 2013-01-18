@@ -46,7 +46,8 @@ var PostWish = {
 	postWish : function(event){
 		this.sendWish(event);
 		this.clearForm();
-		this.getWishList();
+		WriteWish.clearScreen();
+		this.updateWishList(event);
 	},
 	sendWish : function(event){
 		event.preventDefault();
@@ -74,8 +75,63 @@ var PostWish = {
 	clearForm : function(){
 		$("#wish-box-reset-btn").trigger("click");
 	},
-	getWishList : function(){
-
+	updateWishList : function(event){
+		var nodes = $("#status-going section").clone(false);
+		var node = null;
+		if(nodes.length > 0){
+			node = nodes[0];
+		}
+		$("#status-going").children().remove();
+		$("#status-iwish").children().remove();
+		var project_id = event.target.submit.value;
+		var params = {
+			info : "wish-lish"
+		};
+		$.ajax({
+			url: '/update_wish_list/'+project_id,
+			type: 'get', 
+			data: params,
+			datatype: 'json',
+			success: function(date){	
+				var comments = date.comments;
+				comments.forEach(function(comment){
+					if(comment.status == "iwish"){
+						PostWish.createWishList("iwish",node,comment);
+					}
+					else if(comment.status == "ongoing"){
+						PostWish.createWishList("ongoing",node,comment);
+					}
+				});
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
+	},
+	createWishList : function (type,node,comment){
+		if(node){
+			if(type == "iwish"){
+				$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
+				$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
+				$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+				$(node).find(".comment-content").html(comment.content);
+				$(node).find(".comment-vote .comment-vote-score").html(comment.score);
+				$("#status-iwish").append(node);
+			}
+			else if(type == "ongoing"){
+				$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
+				$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
+				$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+				$(node).find(".comment-content").html(comment.content);
+				$(node).find(".comment-vote .comment-vote-score").html(comment.score);
+				$("#status-going").append(node);
+			}
+		}
+		else{
+			
+		}
 	}
 };
 

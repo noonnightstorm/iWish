@@ -40,7 +40,7 @@ exports.index = function(req, res){
   });
 }
 exports.register = function(req,res){
-	console.log(req.session.user_id);
+	/*console.log(req.session.user_id);*/
 	res.render("register",{});
 }
 exports.login = function(req,res){
@@ -94,6 +94,7 @@ exports.myProjectList = function(req,res){
 	}
 	else{
 		Projects.find({user_id:req.session.user_id},function(err,projects){
+			/*console.log(projects);*/
 			res.render("Mypro_list",{
 				projects : projects
 			});
@@ -104,12 +105,18 @@ exports.createProject = function(req,res){
 	res.render("create_pro",{});
 }
 exports.insertsProject = function(req,res){
-	var project = new Projects();
-	project.name = req.body.name;
-	project.content = req.body.content;
-	project.password = req.body.password;
-	project.save();
-	res.redirect("/wish_tree/"+project._id);
+	if(req.session.user_id){
+		var project = new Projects();
+		project.name = req.body.name;
+		project.content = req.body.content;
+		project.password = req.body.password;
+		project.user_id = req.session.user_id;
+		project.save();
+		res.redirect("/wish_tree/"+project._id);
+	}
+	else{
+		res.redirect("/");
+	}
 }
 exports.wishTree = function(req,res){
 	Projects.findOne({_id:req.params.project_id},function(err,project){
@@ -136,14 +143,24 @@ exports.insertComment = function(req,res){
 		comment.score = 0;
 		comment.date = date.getFullYear()+"-"+(parseInt(date.getMonth())+1)+"-"+date.getDate();
 		comment.save();
-		Comments.findOne({_id:comment._id},function(err,obj){
+		/*Comments.findOne({_id:comment._id},function(err,obj){
 			console.log(obj);
-		});
+		});*/
 	});
 	Comments.remove({},function(err,obj){});
-	Persons.remove({},function(err,obj){});
-	Projects.remove({},function(err,obj){});
+	/*Persons.remove({},function(err,obj){});
+	Projects.remove({},function(err,obj){});*/
 }
+exports.updateWishList = function (req,res){
+	Comments.find({},function(err,comments){
+		res.writeHead(200, {'content-type': 'text/json' });
+		res.write( JSON.stringify({ comments : comments}) );
+		res.end('\n');
+	});
+
+} 
+
+
 function init(req){
 	req.session.user_id = null;
 	req.session.user_name = null;

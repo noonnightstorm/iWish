@@ -6,7 +6,7 @@
 		</span>
 	</div>
 	<div class="comment-avatar">
-		<img src="/images/Avatar-<%= comment.user.avatar %>.png" alt="avatar">
+		<img src="/images/Avatar-<%= comment.user.avatar %>.png" alt="avatar" class="comment-avatar-img">
 	</div>
 	<article class="comment-content-box">
 		<div class="comment-operate">
@@ -21,7 +21,7 @@
 		</span>
 	</article>
 	<div class="comment-vote">
-		<span><%= comment.score %></span>
+		<span class="comment-vote-score"><%= comment.score %></span>
 		<button class="add-score-btn" value="<%= comment._id %>">+1</button>
 	</div>
 </section>

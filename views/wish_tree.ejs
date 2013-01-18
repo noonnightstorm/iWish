@@ -22,7 +22,7 @@
 				<%= project.content %>
 			</p>
 			<div class="comment-box">
-				<section class="status-going">
+				<section class="status-going" id="status-going">
 					<% comments.forEach(function(comment){ %>
 						<% if(comment.status == "ongoing"){%>
 						<% include wish_tree_part %>
@@ -34,7 +34,7 @@
 							<span class="comment-info">Sorm @ 2013-1-15</span>
 						</div>
 						<div class="comment-avatar">
-							<img src="/images/Avatar-Storm.png" alt="avatar">
+							<img src="/images/Avatar-Storm.png" alt="avatar" class="comment-avatar-img">
 						</div>
 						<article class="comment-content-box">
 							<div class="comment-operate">
@@ -47,20 +47,42 @@
 							<span class="comment-content">中国共产党\</span>
 						</article>
 						<div class="comment-vote">
-							<span>28</span>
+							<span class="comment-vote-score">28</span>
 							<button class="add-score-btn" value="123">+1</button>
 						</div>
 					</section>
-
+					<section class="comment-item">
+						<div class="comment-title">
+							<img src="/images/status-ongoing.png" alt="" class="comment-status">
+							<span class="comment-info">Sorm @ 2013-1-15</span>
+						</div>
+						<div class="comment-avatar">
+							<img src="/images/Avatar-Storm.png" alt="avatar" class="comment-avatar-img">
+						</div>
+						<article class="comment-content-box">
+							<div class="comment-operate">
+								<a href="">更多</a>
+								&nbsp
+								<a href="">完成</a>
+								&nbsp
+								<a href="">删除</a>
+							</div>
+							<span class="comment-content">中国共产党\</span>
+						</article>
+						<div class="comment-vote">
+							<span class="comment-vote-score">28</span>
+							<button class="add-score-btn" value="123">+1</button>
+						</div>
+					</section>
 				</section>
-				<section class="status-iwish">
+				<section class="status-iwish" id="status-iwish">
 					<% comments.forEach(function(comment){ %>
 						<% if(comment.status == "iwish"){ %>
 						<% include wish_tree_part %>
 						<% } %>
   					<% }) %>
 
-					<section class="comment-item">
+					<!-- <section class="comment-item">
 						<div class="comment-title">
 							<img src="/images/status-iwish.png" alt="" class="comment-status">
 							<span class="comment-info">Sorm @ 2013-1-15</span>
@@ -82,7 +104,7 @@
 							<span>28</span>
 							<button class="add-score-btn" value="123">+1</button>
 						</div>
-					</section>
+					</section> -->
 
 				</section>
 			</div>	
