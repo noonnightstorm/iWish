@@ -10,6 +10,9 @@ window.onload = function(){
 	$("#wish-box").submit(function(e){
 		PostWish.postWish(e);
 	});
+	$(".add-score-btn").click(function(){
+		AddScore.addScore(this);
+	});
 }
 
 var WriteWish = {
@@ -76,6 +79,19 @@ var PostWish = {
 	}
 };
 
+var AddScore = {
+	addScore : function(obj){
+		this.postScore();
+		this.showScore(obj);
+	},
+	postScore : function(){
+
+	},
+	showScore : function(obj){
+		/*var score = parseInt($(obj).siblings()[0].textContent)+1;
+		$(obj).siblings()[0].textContent = score;*/
+	}
+};
 /*function postWish(event){
 	event.preventDefault();
 	form = event.target;

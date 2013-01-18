@@ -95,12 +95,24 @@
 	color: #EC6941;
 	font-size: 28px;
 }
-.comment-vote a{
+/*.comment-vote a{
 	padding: 3px;
 	margin-left: 5px;
 	color: #EC6941;
 	font-size: 25px;
 	background: #EEE;
+}*/
+
+.add-score-btn{
+	padding: 3px;
+	margin-left: 5px;
+	color: #EC6941;
+	font-size: 25px;
+	background: #EEE;
+}
+.add-score-btn:hover{
+	background-color: #EC6941;
+	color: #FFF;
 }
 
 .status-iwish{

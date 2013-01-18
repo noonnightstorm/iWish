@@ -114,7 +114,7 @@ exports.insertsProject = function(req,res){
 exports.wishTree = function(req,res){
 	Projects.findOne({_id:req.params.project_id},function(err,project){
 		Comments.find({project_id:req.params.project_id},function(err,comments){
-			console.log(comments);
+			/*console.log(comments);*/
 			res.render("wish_tree",{
 				project : project,
 				comments : comments
