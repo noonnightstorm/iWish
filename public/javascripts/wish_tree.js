@@ -79,8 +79,6 @@ var PostWish = {
 		$("#wish-box-reset-btn").trigger("click");
 	},
 	updateWishList : function(event){
-		$("#status-going").children().remove();
-		$("#status-iwish").children().remove();
 		var project_id = event.target.submit.value;
 		var params = {
 			info : "wish-lish"
@@ -90,7 +88,9 @@ var PostWish = {
 			type: 'get', 
 			data: params,
 			datatype: 'json',
-			success: function(date){	
+			success: function(date){
+				$("#status-going").children().remove();
+				$("#status-iwish").children().remove();	
 				var comments = date.comments;
 				comments.forEach(function(comment){
 					// here is some problem ,because clone a array,I should correct here later
@@ -145,13 +145,13 @@ var ManageComment = {
 		};
 		$.ajax({
 			url: '/detele_comment/'+obj.value,
-			type: 'get', 
+			type: 'post', 
 			data: params,
 			datatype: 'json',
-			success: function(date){	
-				//I should detele redirect the dom ,not need to get the data from server
-				console.log($(obj).parents().find(".comment-item"));
-				/*alert(date.result);*/
+			success: function(date){
+				if(date.result == "true"){
+					$(obj).parents().parents().parents(".comment-item").remove();
+				}	
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);

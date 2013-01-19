@@ -163,19 +163,20 @@ exports.modifyProject = function (req,res){
 
 }
 exports.deteleComment = function (req,res){
-	/*console.log(req.params.project_id);*/
-	Comments.remove({_id:req.params.comment_id},function(err,obj){
-		if(err){
-			res.writeHead(200, {'content-type': 'text/json' });
-			res.write( JSON.stringify({ result : "false"}) );
-			res.end('\n');
-		}
-		else{
-			res.writeHead(200, {'content-type': 'text/json' });
-			res.write( JSON.stringify({ result : "true"}) );
-			res.end('\n');
-		}
-	});
+	if(req.body.info == "detele"){
+		Comments.remove({_id:req.params.comment_id},function(err,obj){
+			if(err){
+				res.writeHead(200, {'content-type': 'text/json' });
+				res.write( JSON.stringify({ result : "false"}) );
+				res.end('\n');
+			}
+			else{
+				res.writeHead(200, {'content-type': 'text/json' });
+				res.write( JSON.stringify({ result : "true"}) );
+				res.end('\n');
+			}
+		});
+	}
 }
 
 
