@@ -159,6 +159,12 @@ exports.updateWishList = function (req,res){
 	});
 
 } 
+exports.modifyProject = function (req,res){
+
+}
+exports.deteleComment = function (req,res){
+	console.log(req.params.project_id);
+}
 
 
 function init(req){

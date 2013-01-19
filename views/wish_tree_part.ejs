@@ -10,11 +10,14 @@
 	</div>
 	<article class="comment-content-box">
 		<div class="comment-operate">
-			<a href="">更多</a>
+			<% if(comment.status == "iwish") { %>
+				<a href="" class="modify-comment" value="<%= comment._id %>">批准</a>
+			<% } %>
+			<% if(comment.status == "ongoing") { %>
+				<a href="" class="modify-comment" value="<%= comment._id %>">完成</a>
+			<% } %>
 			&nbsp
-			<a href="">完成</a>
-			&nbsp
-			<a href="">删除</a>
+			<a href="" class="detele-comment" value="<%= comment._id %>">删除</a>
 		</div>
 		<span class="comment-content">
 			<%= comment.content %>

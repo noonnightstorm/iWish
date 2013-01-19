@@ -112,16 +112,34 @@ var PostWish = {
 		$(node).find(".comment-title .comment-info").html(comment.user.name + " @ " + comment.date);
 		$(node).find(".comment-content").html(comment.content);
 		$(node).find(".comment-vote .comment-vote-score").html(comment.score);
+		$(node).find(".detele-comment").attr("value",comment._id);
 		if(type == "iwish"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+			$(node).find(".modify-comment").html("批准").attr("value",comment._id);
 			$("#status-iwish").append(node);
 		}
 		else if(type == "ongoing"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
+			$(node).find(".modify-comment").html("完成").attr("value",comment._id);
 			$("#status-going").append(node);
 		}
+	}
+};
+
+var ManageComment = {
+	postManageCode : function (){
+
+	},
+	showChoice : function (){
+
+	},
+	postDeteleRequest : function (){
+
+	},
+	postModifyRequest : function (){
+		
 	}
 };
 
