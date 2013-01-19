@@ -147,7 +147,7 @@ exports.insertComment = function(req,res){
 			console.log(obj);
 		});*/
 	});
-	Comments.remove({},function(err,obj){});
+	/*Comments.remove({},function(err,obj){});*/
 	/*Persons.remove({},function(err,obj){});
 	Projects.remove({},function(err,obj){});*/
 }
@@ -163,7 +163,19 @@ exports.modifyProject = function (req,res){
 
 }
 exports.deteleComment = function (req,res){
-	console.log(req.params.project_id);
+	/*console.log(req.params.project_id);*/
+	Comments.remove({_id:req.params.comment_id},function(err,obj){
+		if(err){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "false"}) );
+			res.end('\n');
+		}
+		else{
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true"}) );
+			res.end('\n');
+		}
+	});
 }
 
 

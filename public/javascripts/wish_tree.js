@@ -13,6 +13,9 @@ window.onload = function(){
 	$(".add-score-btn").click(function(){
 		AddScore.addScore(this);
 	});
+	$(".detele-comment").click(function(){
+		ManageComment.postDeteleRequest(this);
+	});
 }
 
 var WriteWish = {
@@ -76,8 +79,6 @@ var PostWish = {
 		$("#wish-box-reset-btn").trigger("click");
 	},
 	updateWishList : function(event){
-		var nodes = $(".comment-box .comment-item-demo").clone(false);
-		var node = nodes[0];
 		$("#status-going").children().remove();
 		$("#status-iwish").children().remove();
 		var project_id = event.target.submit.value;
@@ -92,6 +93,9 @@ var PostWish = {
 			success: function(date){	
 				var comments = date.comments;
 				comments.forEach(function(comment){
+					// here is some problem ,because clone a array,I should correct here later
+					var nodes = $(".comment-box .comment-item-demo").clone(true);
+					var node = nodes[0];
 					if(comment.status == "iwish"){
 						PostWish.createWishList("iwish",node,comment);
 					}
@@ -135,11 +139,29 @@ var ManageComment = {
 	showChoice : function (){
 
 	},
-	postDeteleRequest : function (){
-
+	postDeteleRequest : function (obj){
+		var params = {
+			info : "detele"
+		};
+		$.ajax({
+			url: '/detele_comment/'+obj.value,
+			type: 'get', 
+			data: params,
+			datatype: 'json',
+			success: function(date){	
+				//I should detele redirect the dom ,not need to get the data from server
+				console.log($(obj).parents().find(".comment-item"));
+				/*alert(date.result);*/
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
 	},
 	postModifyRequest : function (){
-		
+
 	}
 };
 

@@ -105,6 +105,16 @@
 	font-size: 25px;
 	background: #EEE;
 }*/
+.modify-comment-btn{
+	padding: 3px;
+	color: #EC6941;
+	background-color:transparent;
+	cursor: pointer;
+}
+.modify-comment-btn:hover{
+	background-color:#EC6941;
+	color: #FFF;
+}
 
 .add-score-btn{
 	padding: 3px;
