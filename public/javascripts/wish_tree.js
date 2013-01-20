@@ -17,10 +17,11 @@ window.onload = function(){
 		ManageComment.postDeteleRequest(this);
 	});
 	$(".iwish-status-btn").click(function(){
-		ManageComment.postIwishStatusRequest();
+		/*console.log($(this).val());*/
+		ManageComment.postIwishStatusRequest(this);
 	});
 	$(".going-status-btn").click(function(){
-		ManageComment.postGoingStatusRequest();
+		ManageComment.postGoingStatusRequest(this);
 	});
 	$(".wish-menu-btn").click(function(){
 		ManageComment.postManageCode(this);
@@ -196,11 +197,53 @@ var ManageComment = {
 			}
 		});
 	},
-	postIwishStatusRequest : function (){
-
+	postIwishStatusRequest : function (obj){
+		var params = {
+			info : "postIwishStatusRequest"
+		};
+		$.ajax({
+			url: '/modifyIwishStatus/'+obj.value,
+			type: 'post', 
+			data: params,
+			datatype: 'json',
+			success: function(date){
+				console.log(date.result);
+				if(date.result == "true"){
+					var node = $(obj).parents().parents().parents(".comment-item").clone(true);
+					$(obj).parents().parents().parents(".comment-item").remove();
+					$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
+					$(node).find(".modify-comment").html("完成").addClass("going-status-btn").removeClass("iwish-status-btn");
+					$("#status-going").append(node);
+				}	
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
 	},
-	postGoingStatusRequest : function (){
-
+	postGoingStatusRequest : function (obj){
+		console.log(obj.value);
+		var params = {
+			info : "postGoingStatusRequest"
+		};
+		$.ajax({
+			url: '/modifyGoingStatus/'+obj.value,
+			type: 'post', 
+			data: params,
+			datatype: 'json',
+			success: function(date){
+				if(date.result == "true"){
+					$(obj).parents().parents().parents(".comment-item").remove();
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
 	}
 };
 

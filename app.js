@@ -43,6 +43,8 @@ app.get("/update_wish_list/:project_id",routes.updateWishList);
 app.post("/add_comment/:project_id",routes.insertComment);
 app.post("/owner_enter/:project_id",routes.showOperate);
 app.post("/detele_comment/:comment_id",routes.deteleComment);
+app.post("/modifyIwishStatus/:comment_id",routes.modifyIwishStatus);
+app.post("/modifyGoingStatus/:comment_id",routes.modifyGoingStatus);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

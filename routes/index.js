@@ -165,8 +165,23 @@ exports.showOperate = function(req,res){
 		}
 	});
 }
-exports.modifyProject = function (req,res){
-
+exports.modifyIwishStatus = function (req,res){
+	Comments.update({_id:req.params.comment_id},{$set:{status:"ongoing"}},function(err,obj){
+		if(obj){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true"}) );
+			res.end('\n');
+		}
+	});
+}
+exports.modifyGoingStatus = function (req,res){
+	Comments.update({_id:req.params.comment_id},{$set:{status:"finish"}},function(err,obj){
+		if(obj){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true"}) );
+			res.end('\n');
+		}
+	});
 }
 exports.deteleComment = function (req,res){
 	if(req.body.info == "detele"){

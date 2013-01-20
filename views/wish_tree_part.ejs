@@ -11,10 +11,12 @@
 	<article class="comment-content-box">
 		<div class="comment-operate">
 			<% if(comment.status == "iwish") { %>
-				<buttom class="modify-comment-btn modify-comment iwish-status-btn" value="<%= comment._id %>">批准</buttom>
+				<!-- <buttom class="modify-comment-btn modify-comment iwish-status-btn" value="<%= comment._id %>">批准</buttom> -->
+				<button class="modify-comment-btn modify-comment iwish-status-btn" value="<%= comment._id %>">批准</button>
 			<% } %>
 			<% if(comment.status == "ongoing") { %>
-				<buttom class="modify-comment-btn modify-comment going-status-btn" value="<%= comment._id %>">完成</buttom>
+				<!-- <buttom class="modify-comment-btn modify-comment going-status-btn" value="<%= comment._id %>">完成</buttom> -->
+				<button class="modify-comment-btn modify-comment going-status-btn" value="<%= comment._id %>">完成</button>
 			<% } %>
 			&nbsp
 			<button class="modify-comment-btn detele-comment" value="<%= comment._id %>">删除</button>
