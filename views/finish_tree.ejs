@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="/stylesheets/layout.css">
+	<!-- <link rel="stylesheet" href="/stylesheets/project.css"> -->
+	<link rel="stylesheet" href="/stylesheets/wish_list.css">
+</head>
+<body>
+	<div class="container">
+		<header class="header project-header">
+			<a href="" class="logo project-logo"></a>
+			<a href="" class="logo-tips">for HCI</a>
+			<a href="/wish_tree/<%= project._id %>" class="complete-wish">愿望树</a>
+			<button class="suggest"></button>
+		</header>
+		<div class="body project-body">
+			<h1 class="project-title">项目名称:<%= project.name %></h1>
+			<p class="project-content">
+				项目简介:<%= project.content %>
+			</p>
+			<div class="comment-box">
+				<section class="status-going">
+					<% comments.forEach(function(comment){ %>
+						<% include finish_tree_part %>
+  					<% }) %>
+				</section>
+			</div>	
+		</div>
+		<footer>
+			<div class="footer-box">
+				<section class="menu">
+					<a href="">愿望树</a>
+					&nbsp&nbsp|&nbsp&nbsp
+					<a href="">创建项目</a>
+				</section>
+			</div>
+			<div class="footer-author">
+				<span>技术指导:梁广彬 黄浩松 黄佳生</span>
+				&nbsp&nbsp&nbsp&nbsp
+				<span>版权所有:<a href="">SCAU@HCI</a></span>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

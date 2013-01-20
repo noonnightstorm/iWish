@@ -39,6 +39,7 @@ app.get("/Mypro_list",routes.myProjectList);
 app.get("/create_pro",routes.createProject);
 app.post("/insert_pro",routes.insertsProject);
 app.get("/wish_tree/:project_id",routes.wishTree);
+app.get("/finish_tree/:project_id",routes.finishTree);
 app.get("/update_wish_list/:project_id",routes.updateWishList);
 app.post("/add_comment/:project_id",routes.insertComment);
 app.post("/owner_enter/:project_id",routes.showOperate);

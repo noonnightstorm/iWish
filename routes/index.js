@@ -125,6 +125,17 @@ exports.wishTree = function(req,res){
 		});
 	});
 }
+exports.finishTree = function (req,res){
+	Projects.findOne({_id:req.params.project_id},function(err,project){
+		Comments.find({project_id:req.params.project_id,status:"finish"},function(err,comments){
+			/*console.log(comments);*/
+			res.render("finish_tree",{
+				project : project,
+				comments : comments
+			});
+		});
+	});
+}
 exports.insertComment = function(req,res){
 	Persons.findOne({_id:req.session.user_id},function(err,user){
 		var date = new Date();
@@ -149,7 +160,7 @@ exports.insertComment = function(req,res){
 	Projects.remove({},function(err,obj){});*/
 }
 exports.updateWishList = function (req,res){
-	Comments.find({},function(err,comments){
+	Comments.find({project_id:req.params.project_id},function(err,comments){
 		res.writeHead(200, {'content-type': 'text/json' });
 		res.write( JSON.stringify({ comments : comments}) );
 		res.end('\n');

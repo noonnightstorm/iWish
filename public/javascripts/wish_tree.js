@@ -17,7 +17,6 @@ window.onload = function(){
 		ManageComment.postDeteleRequest(this);
 	});
 	$(".iwish-status-btn").click(function(){
-		/*console.log($(this).val());*/
 		ManageComment.postIwishStatusRequest(this);
 	});
 	$(".going-status-btn").click(function(){
@@ -108,7 +107,6 @@ var PostWish = {
 				$("#status-iwish").children().remove();	
 				var comments = date.comments;
 				comments.forEach(function(comment){
-					// here is some problem ,because clone a array,I should correct here later
 					var nodes = $(".comment-box .comment-item-demo").clone(true);
 					var node = nodes[0];
 					if(comment.status == "iwish"){
@@ -207,7 +205,6 @@ var ManageComment = {
 			data: params,
 			datatype: 'json',
 			success: function(date){
-				console.log(date.result);
 				if(date.result == "true"){
 					var node = $(obj).parents().parents().parents(".comment-item").clone(true);
 					$(obj).parents().parents().parents(".comment-item").remove();

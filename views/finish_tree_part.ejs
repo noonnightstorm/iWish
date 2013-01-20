@@ -1,0 +1,22 @@
+<section class="comment-item">
+	<div class="comment-title">
+		<img src="/images/status-done.png" alt="" class="comment-status">
+		<span class="comment-info"> 
+			<%= comment.user.name %> @ <%= comment.date %> 
+		</span>
+	</div>
+	<div class="comment-avatar">
+		<img src="/images/Avatar-<%= comment.user.avatar %>.png" alt="avatar">
+	</div>
+	<article class="comment-content-box">
+		<span class="comment-content">
+			<%= comment.content %>
+		</span>
+	</article>
+	<div class="comment-vote">
+		<span>
+			<%= comment.score %>
+		</span>
+		<button class="add-score-btn" value="<%= comment._id %>">+1</button>
+	</div>
+</section>
