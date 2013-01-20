@@ -210,6 +210,23 @@ exports.deteleComment = function (req,res){
 		});
 	}
 }
+exports.addScore = function (req,res){
+	/*Comments.update({_id:req.params.comment_id},{$inc:{score:1}},function(err){
+		if(obj){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true",score : }) );
+			res.end('\n');
+		}
+
+	});*/
+	Comments.update({_id:req.params.comment_id},{$inc:{score:1}},function(err,comment){
+		Comments.findOne({_id:req.params.comment_id},function(err,obj){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true",score : obj.score}) );
+			res.end('\n');
+		});
+	});
+}
 
 
 function init(req){

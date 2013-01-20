@@ -221,7 +221,6 @@ var ManageComment = {
 		});
 	},
 	postGoingStatusRequest : function (obj){
-		console.log(obj.value);
 		var params = {
 			info : "postGoingStatusRequest"
 		};
@@ -246,14 +245,27 @@ var ManageComment = {
 
 var AddScore = {
 	addScore : function(obj){
-		this.postScore();
-		this.showScore(obj);
+		this.postScore(obj);
 	},
-	postScore : function(){
-
-	},
-	showScore : function(obj){
-		/*var score = parseInt($(obj).siblings()[0].textContent)+1;
-		$(obj).siblings()[0].textContent = score;*/
+	postScore : function(obj){
+		var params = {
+			info : "addScore"
+		};
+		$.ajax({
+			url: '/add_score/'+obj.value,
+			type: 'post', 
+			data: params,
+			datatype: 'json',
+			success: function(date){
+				if(date.result == "true"){
+					$(obj).siblings(".comment-vote-score").html(date.score);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
 	}
 };
