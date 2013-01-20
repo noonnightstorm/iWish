@@ -16,6 +16,15 @@ window.onload = function(){
 	$(".detele-comment").click(function(){
 		ManageComment.postDeteleRequest(this);
 	});
+	$(".iwish-status-btn").click(function(){
+		ManageComment.postIwishStatusRequest();
+	});
+	$(".going-status-btn").click(function(){
+		ManageComment.postGoingStatusRequest();
+	});
+	$(".wish-menu-btn").click(function(){
+		ManageComment.postManageCode(this);
+	});
 }
 
 var WriteWish = {
@@ -50,7 +59,7 @@ var PostWish = {
 		this.sendWish(event);
 		this.clearForm();
 		WriteWish.clearScreen();
-		this.updateWishList(event);
+		/*this.updateWishList(event);*/
 	},
 	sendWish : function(event){
 		event.preventDefault();
@@ -63,8 +72,9 @@ var PostWish = {
 			type: 'post', 
 			data: params,
 			datatype: 'json',
-			success: function(){
-				alert("success!");
+			success: function(date){
+				if(date.result == "success")
+				PostWish.updateWishList(event);
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
@@ -120,24 +130,41 @@ var PostWish = {
 		if(type == "iwish"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-iwish.png");
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-			$(node).find(".modify-comment").html("批准").attr("value",comment._id);
+			$(node).find(".modify-comment").html("批准").attr("value",comment._id).addClass("iwish-status-btn");
 			$("#status-iwish").append(node);
 		}
 		else if(type == "ongoing"){
 			$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
 			$(node).find(".comment-avatar .comment-avatar-img").attr("src","/images/Avatar-" + comment.user.avatar + ".png");
-			$(node).find(".modify-comment").html("完成").attr("value",comment._id);
+			$(node).find(".modify-comment").html("完成").attr("value",comment._id).addClass("going-status-btn");
 			$("#status-going").append(node);
 		}
 	}
 };
 
 var ManageComment = {
-	postManageCode : function (){
-
-	},
-	showChoice : function (){
-
+	postManageCode : function (obj){
+		var params = {
+			project_id : obj.value,
+			project_code : $("#wish-menu-input").val(),
+			info : "userCode"
+		};
+		$.ajax({
+			url: '/owner_enter/'+obj.value,
+			type: 'post', 
+			data: params,
+			datatype: 'json',
+			success: function(date){
+				if(date.result == "true"){
+					$(".comment-operate").css("display","block");
+				}	
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown){
+				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
+			},
+			complete: function(a,b){
+			}
+		});
 	},
 	postDeteleRequest : function (obj){
 		var params = {
@@ -160,7 +187,10 @@ var ManageComment = {
 			}
 		});
 	},
-	postModifyRequest : function (){
+	postIwishStatusRequest : function (){
+
+	},
+	postGoingStatusRequest : function (){
 
 	}
 };
@@ -178,26 +208,3 @@ var AddScore = {
 		$(obj).siblings()[0].textContent = score;*/
 	}
 };
-/*function postWish(event){
-	event.preventDefault();
-	form = event.target;
-	var params = {
-		content : $("#wish-content").val()
-	};
-	$.ajax({
-		url: '/add_comment/'+form.submit.value,
-		type: 'post', 
-		data: params,
-		datatype: 'json',
-		success: function(){
-			alert("success!");
-		},
-		error: function(XMLHttpRequest, textStatus, errorThrown){
-			console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
-		},
-		complete: function(a,b){
-			console.log(a + 'complete#' + b);
-		}
-	});
-	return false;
-}*/

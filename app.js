@@ -41,6 +41,7 @@ app.post("/insert_pro",routes.insertsProject);
 app.get("/wish_tree/:project_id",routes.wishTree);
 app.get("/update_wish_list/:project_id",routes.updateWishList);
 app.post("/add_comment/:project_id",routes.insertComment);
+app.post("/owner_enter/:project_id",routes.showOperate);
 app.post("/detele_comment/:comment_id",routes.deteleComment);
 
 http.createServer(app).listen(app.get('port'), function(){

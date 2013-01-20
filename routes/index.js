@@ -12,7 +12,8 @@ var Person = new Schema({
 var Project = new Schema({
 	name : String ,
 	content : String ,
-	user_id : String
+	user_id : String ,
+	password : String
 });
 var Comment = new Schema({
 	content : String ,
@@ -130,8 +131,6 @@ exports.wishTree = function(req,res){
 	});
 }
 exports.insertComment = function(req,res){
-	/*console.log(req.params.project_id);
-	console.log(req.body.content);*/
 	Persons.findOne({_id:req.session.user_id},function(err,user){
 		var date = new Date();
 		var comment = new Comments();
@@ -143,12 +142,15 @@ exports.insertComment = function(req,res){
 		comment.score = 0;
 		comment.date = date.getFullYear()+"-"+(parseInt(date.getMonth())+1)+"-"+date.getDate();
 		comment.save();
+		res.writeHead(200, {'content-type': 'text/json' });
+		res.write( JSON.stringify({ result : "success"}) );
+		res.end('\n');
 		/*Comments.findOne({_id:comment._id},function(err,obj){
 			console.log(obj);
 		});*/
 	});
-	/*Comments.remove({},function(err,obj){});*/
-	/*Persons.remove({},function(err,obj){});
+	/*Comments.remove({},function(err,obj){});
+	Persons.remove({},function(err,obj){});
 	Projects.remove({},function(err,obj){});*/
 }
 exports.updateWishList = function (req,res){
@@ -159,6 +161,15 @@ exports.updateWishList = function (req,res){
 	});
 
 } 
+exports.showOperate = function(req,res){
+	Projects.find({_id:req.body.project_id,user_id:req.session.user_id,password:req.body.project_code},function(err,obj){
+		if(obj){
+			res.writeHead(200, {'content-type': 'text/json' });
+			res.write( JSON.stringify({ result : "true"}) );
+			res.end('\n');
+		}
+	});
+}
 exports.modifyProject = function (req,res){
 
 }
