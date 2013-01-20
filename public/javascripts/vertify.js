@@ -1,5 +1,4 @@
 var Vertify = {
-	//color is not right
 	loginVertify : function(){
 		$("#login-account").css("background","#fff");
 		$("#login-password").css("background","#fff");
@@ -42,7 +41,27 @@ var Vertify = {
 		return true;
 	},
 	projectVertify : function(){
-
+		$("#name").css("background","#fff");
+		$("#introduction").css("background","#fff");
+		$("#password").css("background","#fff");
+		$("#password-again").css("background","#fff");
+		if($("#name").val() == ""){
+			$("#name").css("background","#ffb9b9");
+			return false;
+		}
+		if($("#introduction").val() == ""){
+			$("#introduction").css("background","#ffb9b9");
+			return false;
+		}
+		if($("#password").val() == ""){
+			$("#password").css("background","#ffb9b9");
+			return false;
+		}
+		if($("#password-again").val() != $("#password").val()){
+			$("#password-again").css("background","#ffb9b9");
+			return false;
+		}
+		return true;
 	},
 	commentVertify : function(){
 
