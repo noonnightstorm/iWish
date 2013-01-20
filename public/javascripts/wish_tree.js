@@ -51,19 +51,21 @@ var WriteWish = {
 		wishBox.style.top = "-300px";
 		var screen = document.getElementById("all-screen");
 		screen.style.display = "none";
+		$("#wish-content").css("background","#FFF7F4");
 	}
 };
 
 var PostWish = {
 	postWish : function(event){
 		this.sendWish(event);
-		this.clearForm();
-		WriteWish.clearScreen();
 		/*this.updateWishList(event);*/
 	},
 	sendWish : function(event){
 		event.preventDefault();
 		form = event.target;
+		if(Vertify.commentVertify() == false){
+			return false;
+		}
 		var params = {
 			content : $("#wish-content").val()
 		};
@@ -75,6 +77,8 @@ var PostWish = {
 			success: function(date){
 				if(date.result == "success")
 				PostWish.updateWishList(event);
+				PostWish.clearForm();
+				WriteWish.clearScreen();
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
 				console.log(XMLHttpRequest + '#' + textStatus + '#' + errorThrown);
@@ -144,6 +148,8 @@ var PostWish = {
 
 var ManageComment = {
 	postManageCode : function (obj){
+		if(Vertify.projectEnterVertify() == false)
+			return false;
 		var params = {
 			project_id : obj.value,
 			project_code : $("#wish-menu-input").val(),
@@ -157,6 +163,9 @@ var ManageComment = {
 			success: function(date){
 				if(date.result == "true"){
 					$(".comment-operate").css("display","block");
+				}
+				else{
+					$("#wish-menu-input").css("background","#ffb9b9");
 				}	
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){

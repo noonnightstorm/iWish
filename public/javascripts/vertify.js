@@ -64,6 +64,19 @@ var Vertify = {
 		return true;
 	},
 	commentVertify : function(){
-
+		$("#wish-content").css("background","#FFF7F4");
+		if($("#wish-content").val() == ""){
+			$("#wish-content").css("background","#ffb9b9");
+			return false;
+		}
+		return true;
+	},
+	projectEnterVertify : function(){
+		$("#wish-menu-input").css("background","#FFF7F4");
+		if($("#wish-menu-input").val() == ""){
+			$("#wish-menu-input").css("background","#ffb9b9");
+				return false;
+		}
+		return true;
 	}
 };

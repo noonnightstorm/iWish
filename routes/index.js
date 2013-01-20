@@ -158,7 +158,7 @@ exports.updateWishList = function (req,res){
 } 
 exports.showOperate = function(req,res){
 	Projects.find({_id:req.body.project_id,user_id:req.session.user_id,password:req.body.project_code},function(err,obj){
-		if(obj){
+		if(obj.length > 0){
 			res.writeHead(200, {'content-type': 'text/json' });
 			res.write( JSON.stringify({ result : "true"}) );
 			res.end('\n');
