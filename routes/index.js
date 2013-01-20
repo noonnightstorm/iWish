@@ -63,24 +63,19 @@ exports.login = function(req,res){
 	});
 }
 exports.insertUser = function(req,res){
-	if(req.body.password != req.body.password2){
-		console.log("password again is not right");
-	}
-	else{
-		var user = new Persons();
-		user.mail = req.body.mail;
-		user.password = req.body.password;
-		user.name = req.body.nickname;
-		user.avatar = req.body.avatar;
-		user.save();
-		/*Persons.findOne({_id:user._id},function(err,obj){
-			console.log(obj);
-		});*/
-		req.session.user_id = user._id;
-		req.session.user_name = user.name;
-		req.session.user_avatar = user.avatar;
-		res.redirect("/pro_list");
-	}
+	var user = new Persons();
+	user.mail = req.body.mail;
+	user.password = req.body.password;
+	user.name = req.body.nickname;
+	user.avatar = req.body.avatar;
+	user.save();
+	/*Persons.findOne({_id:user._id},function(err,obj){
+		console.log(obj);
+	});*/
+	req.session.user_id = user._id;
+	req.session.user_name = user.name;
+	req.session.user_avatar = user.avatar;
+	res.redirect("/pro_list");
 }
 exports.projectList = function(req,res){
 	Projects.find({},function(err,projects){
