@@ -25,7 +25,7 @@ window.onload = function(){
 	$(".wish-menu-btn").click(function(){
 		ManageComment.postManageCode(this);
 	});
-}
+};
 
 var WriteWish = {
 	showScreen : function(){

@@ -181,9 +181,9 @@ exports.insertComment = function(req,res){
 			console.log(obj);
 		});*/
 	});
-	Comments.remove({},function(err,obj){});
+	/*Comments.remove({},function(err,obj){});
 	Persons.remove({},function(err,obj){});
-	Projects.remove({},function(err,obj){});
+	Projects.remove({},function(err,obj){});*/
 }
 exports.updateWishList = function (req,res){
 	Comments.find({project_id:req.params.project_id},function(err,comments){
