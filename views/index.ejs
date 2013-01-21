@@ -29,8 +29,14 @@
 		<div class="body">
 			<p class="title">登录</p>
 			<form method="get" action="/login" class="login-form" onSubmit="return Vertify.loginVertify();">
+				<% if(title == "wrong") {%>
+				<input type="text" class="login-input login-account" placeholder="邮箱" name="mail" id="login-account" style="background:#ffb9b9">
+				<input type="password" class="login-input login-password" placeholder="密码" name="password" id="login-password" style="background:#ffb9b9">
+				<% } %>
+				<% if(title != "wrong"){ %>
 				<input type="text" class="login-input login-account" placeholder="邮箱" name="mail" id="login-account">
 				<input type="password" class="login-input login-password" placeholder="密码" name="password" id="login-password">
+				<% } %>
 				<input type="submit" value="登录" class="btn login-btn">
 				<a href="./register" class="register">注册账号</a>
 			</form>

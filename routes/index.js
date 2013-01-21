@@ -57,7 +57,9 @@ exports.login = function(req,res){
 				res.redirect("/pro_list");
 			}
 			else{
-				console.log("password is wrong!");
+				res.render('index', { 
+			  		title: 'wrong'
+			  	});
 			}
 		}
 	});
@@ -179,9 +181,9 @@ exports.insertComment = function(req,res){
 			console.log(obj);
 		});*/
 	});
-	/*Comments.remove({},function(err,obj){});
+	Comments.remove({},function(err,obj){});
 	Persons.remove({},function(err,obj){});
-	Projects.remove({},function(err,obj){});*/
+	Projects.remove({},function(err,obj){});
 }
 exports.updateWishList = function (req,res){
 	Comments.find({project_id:req.params.project_id},function(err,comments){
