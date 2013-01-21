@@ -107,7 +107,7 @@ var PostWish = {
 				$("#status-iwish").children().remove();	
 				var comments = date.comments;
 				comments.forEach(function(comment){
-					var nodes = $(".comment-box .comment-item-demo").clone(true);
+					var nodes = $(".comment-box .comment-item-demo").clone(false);
 					var node = nodes[0];
 					if(comment.status == "iwish"){
 						PostWish.createWishList("iwish",node,comment);
@@ -115,6 +115,15 @@ var PostWish = {
 					else if(comment.status == "ongoing"){
 						PostWish.createWishList("ongoing",node,comment);
 					}
+				});
+				$(".detele-comment").click(function(){
+					ManageComment.postDeteleRequest(this);
+				});
+				$(".iwish-status-btn").click(function(){
+					ManageComment.postIwishStatusRequest(this);
+				});
+				$(".going-status-btn").click(function(){
+					ManageComment.postGoingStatusRequest(this);
 				});
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){
@@ -206,11 +215,14 @@ var ManageComment = {
 			datatype: 'json',
 			success: function(date){
 				if(date.result == "true"){
-					var node = $(obj).parents().parents().parents(".comment-item").clone(true);
+					var node = $(obj).parents().parents().parents(".comment-item").clone(false);
 					$(obj).parents().parents().parents(".comment-item").remove();
 					$(node).find(".comment-title .comment-status").attr("src","/images/status-ongoing.png");
 					$(node).find(".modify-comment").html("完成").addClass("going-status-btn").removeClass("iwish-status-btn");
 					$("#status-going").append(node);
+					$(".detele-comment").click(function(){
+						ManageComment.postDeteleRequest(this);
+					});
 				}	
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown){

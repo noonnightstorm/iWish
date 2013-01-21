@@ -8,12 +8,15 @@
 	<script type="text/javascript" src="/javascripts/wish_tree.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery-1.7.min.js"></script>
 	<script type="text/javascript" src="/javascripts/vertify.js"></script>
+	<script type="text/javascript" src="/javascripts/sign_out.js"></script>
 </head>
 <body>
 	<div class="container">
 		<header class="header project-header">
 			<a href="" class="logo project-logo"></a>
-			<a href="" class="logo-tips">for HCI</a>
+			<a href="" class="header-orange logo-tips">for HCI</a>
+			<span class="header-orange header-name">Hello ,<%= user_name %> !</span>
+			<button class="header-orange sign-out">sign out</button>
 			<a href="/finish_tree/<%= project._id %>" class="complete-wish">愿望成真</a>
 			<button class="suggest" id="suggest" value="<%= project._id %>"></button>
 		</header>

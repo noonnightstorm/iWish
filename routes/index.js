@@ -79,26 +79,40 @@ exports.insertUser = function(req,res){
 }
 exports.projectList = function(req,res){
 	Projects.find({},function(err,projects){
-		res.render("pro_list",{
-			projects : projects
-		});
+		if(req.session.user_id){
+			res.render("pro_list",{
+				projects : projects,
+				user_name : req.session.user_name
+			});
+		}
+		else{
+			res.redirect("/");
+		}
 	});
 }
 exports.myProjectList = function(req,res){
 	if(req.session.user_id == null){
 		res.redirect("/");
+		return ;
 	}
 	else{
 		Projects.find({user_id:req.session.user_id},function(err,projects){
 			/*console.log(projects);*/
 			res.render("Mypro_list",{
-				projects : projects
+				projects : projects,
+				user_name : req.session.user_name
 			});
 		});
 	}
 }
 exports.createProject = function(req,res){
-	res.render("create_pro",{});
+	if(req.session.user_id == null){
+		res.redirect("/");
+		return ;
+	}
+	res.render("create_pro",{
+		user_name : req.session.user_name
+	});
 }
 exports.insertsProject = function(req,res){
 	if(req.session.user_id){
@@ -115,23 +129,33 @@ exports.insertsProject = function(req,res){
 	}
 }
 exports.wishTree = function(req,res){
+	if(req.session.user_id == null){
+		req.redirect("/");
+		return;
+	}
 	Projects.findOne({_id:req.params.project_id},function(err,project){
 		Comments.find({project_id:req.params.project_id},function(err,comments){
 			/*console.log(comments);*/
 			res.render("wish_tree",{
 				project : project,
-				comments : comments
+				comments : comments,
+				user_name : req.session.user_name
 			});
 		});
 	});
 }
 exports.finishTree = function (req,res){
+	if(req.session.user_id == null){
+		res.redirect("/");
+		return ;
+	}
 	Projects.findOne({_id:req.params.project_id},function(err,project){
 		Comments.find({project_id:req.params.project_id,status:"finish"},function(err,comments){
 			/*console.log(comments);*/
 			res.render("finish_tree",{
 				project : project,
-				comments : comments
+				comments : comments,
+				user_name : req.session.user_name
 			});
 		});
 	});
@@ -226,6 +250,12 @@ exports.addScore = function (req,res){
 			res.end('\n');
 		});
 	});
+}
+exports.signOut = function (req,res){
+	if(req.body.info == "signOut"){
+		init(req);
+		res.redirect("/");
+	}
 }
 
 

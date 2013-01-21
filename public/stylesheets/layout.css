@@ -28,17 +28,28 @@ a{
 	text-indent: -999em;
 	background: url('../images/logo.png') no-repeat;
 }
-.logo-tips{
+.header-orange{
 	position: absolute;
-	font-size: 13px;
+	font-size: 14px;
 	padding: 2px;
-	left: 400px;
-	top: 20px;
 	color: #EC6941;
 }
-.logo-tips:hover{
+.header-orange:hover{
 	background:#ec6941;
 	color:#ffffff;
+}
+.logo-tips{
+	left: 400px;
+	top: 20px;
+}
+.header-name{
+	top: 0;
+	right: 100px;
+}
+.sign-out{
+	background-color: transparent;
+	top: 0;
+	right: 40px;
 }
 .body{
 	width: 860px;

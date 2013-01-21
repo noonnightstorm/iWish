@@ -5,20 +5,20 @@
 	<title>愿望树列表</title>
 	<link rel="stylesheet" href="/stylesheets/layout.css">
 	<link rel="stylesheet" href="/stylesheets/pro_list.css">
+	<script type="text/javascript" src="/javascripts/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="/javascripts/sign_out.js"></script>
 </head>
 <body>
 	<div class="container">
 		<header class="header">
 			<a href="" class="logo"></a>
-			<a href="" class="logo-tips">for HCI</a>
+			<a href="" class="header-orange logo-tips">for HCI</a>
+			<span class="header-orange header-name">Hello ,<%= user_name %> !</span>
+			<button class="header-orange sign-out">sign out</button>
 		</header>
 		<div class="body">
 			<h1 class="list-title">项目列表</h1>
 			<section class="article-box">
-				<article class="article-item">
-					<h2 class="article-title"><a href="">项目A</a></h2>
-					<p class="article-content">项目A简介项目A简介项目A简介项目A简介项目A简介项目A简介项目A简介项目A简介</p>
-				</article>
 				
 				<% projects.forEach(function(project){ %>
 					<% include pro_list_part %>
@@ -37,6 +37,9 @@
 				<span>技术指导:梁广彬 黄浩松 黄佳生</span>
 				&nbsp&nbsp&nbsp&nbsp
 				<span>版权所有:<a href="">SCAU@HCI</a></span>
+			</div>
+			<div class="footer-author">
+				<span>联系方式:noonnightstorm@gmail.com</span>
 			</div>
 		</footer>
 	</div>

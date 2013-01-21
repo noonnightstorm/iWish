@@ -7,12 +7,15 @@
 	<link rel="stylesheet" href="/stylesheets/create_pro.css">
 	<script type="text/javascript" src="/javascripts/vertify.js"></script>
 	<script type="text/javascript" src="/javascripts/jquery-1.7.min.js"></script>
+	<script type="text/javascript" src="/javascripts/sign_out.js"></script>
 </head>
 <body>
 	<div class="container">
 		<header class="header">
 			<a href="" class="logo"></a>
-			<a href="" class="logo-tips">for HCI</a>
+			<a href="" class="header-orange logo-tips">for HCI</a>
+			<span class="header-orange header-name">Hello ,<%= user_name %> !</span>
+			<button class="header-orange sign-out">sign out</button>
 			<img src="/images/create-logo.png" alt="创建项目标记" class="create-logo">
 		</header>
 		<div class="body">
